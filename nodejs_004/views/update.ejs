@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/stylesheets/write.css" rel="stylesheet" />
+    <title>게시글 수정</title>
+  </head>
+  <body>
+    <form method="POST">
+      <h1>게시글 수정</h1>
+      <div>
+        <label>제목</label><input id="b_subject" name="b_subject" type="text" value="<%- BBS.b_subject %>" ></input>
+      </div>
+      <div>
+        <label>작성일자</label
+        ><input id="b_date" name="b_date" type="text" value="<%- BBS.b_date %>" />
+      </div>
+      <div>
+        <label>작성시각</label
+        ><input id="b_time" name="b_time" type="text" value="<%- BBS.b_time %>" />
+      </div>
+      <div>
+        <label>작성자</label
+        ><input id="b_writer" name="b_writer" type="text" value="<%- BBS.b_writer %>" />
+      </div>
+
+      <div>
+        <label>내용</label>
+        <textarea
+          id="b_text"
+          name="b_text"
+          cols="30"
+          rows="5"
+        ><%- BBS.b_text %></textarea>
+      </div>
+      <button class="btn_save">저장</button>
+    </form>
+  </body>
+  <script>
+    document.querySelector("button.btn_save").addEventListener("click", () => {
+      document.location.href = "/";
+    });
+</script>
+</html>

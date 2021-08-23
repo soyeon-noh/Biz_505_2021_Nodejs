@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>나의 게시판</title>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
     <h1>나의 게시판</h1>
-    <table>
+    <table id="tbl_board">
       <tr>
         <th>NO</th>
-        <td>작성일자</td>
-        <td>작성자</td>
-        <td>제목</td>
-        <td>조회수</td>
+        <th>작성일자</th>
+        <th>작성자</th>
+        <th>제목</th>
+        <th>조회수</th>
       </tr>
-      <tr>
-        <th></th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+      <% BBS.forEach( (vo, index) => { %>
+      <tr data-seq="<%= vo.b_id %>">
+        <td><%- index %></td>
+        <td><%- vo.b_date %></td>
+        <td><%- vo.b_time %></td>
+        <td><%- vo.b_subject %></td>
+        <td><%- vo.b_count %></td>
       </tr>
+      <% }) %>
     </table>
     <button class="btn_write">글쓰기</button>
   </body>
@@ -28,5 +30,19 @@
     document.querySelector("button.btn_write").addEventListener("click", () => {
       document.location.href = "/bbs/write";
     });
+
+    let tr = document.querySelector("table#tbl_board");
+    if (tr) {
+      tr.addEventListener("click", (e) => {
+        let seq = e.target.closest("TR").dataset.seq;
+        console.log("시퀀스", seq);
+
+        if (confirm(seq + "번 글을 수정하시겠습니까?")) {
+          location.href = "/bbs/update?seq=" + seq;
+        } else {
+          return false;
+        }
+      });
+    }
   </script>
 </html>
