@@ -23,7 +23,7 @@ router.get("/add", (req, res) => {
 
   // 문자열 변수 num1, num2에 담긴 값을 정수로 변환하여
   // 덧셈하고 sum 변수에 저장하라
-  const sum = paseInt(num1) + parseInt(num2);
+  const sum = parseInt(num1) + parseInt(num2);
 
   const result = {
     num1,

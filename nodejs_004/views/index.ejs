@@ -8,11 +8,11 @@
     <h1>나의 게시판</h1>
     <table>
       <tr>
-        <th></th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <th>NO</th>
+        <td>작성일자</td>
+        <td>작성자</td>
+        <td>제목</td>
+        <td>조회수</td>
       </tr>
       <tr>
         <th></th>
@@ -22,5 +22,11 @@
         <td></td>
       </tr>
     </table>
+    <button class="btn_write">글쓰기</button>
   </body>
+  <script>
+    document.querySelector("button.btn_write").addEventListener("click", () => {
+      document.location.href = "/bbs/write";
+    });
+  </script>
 </html>
