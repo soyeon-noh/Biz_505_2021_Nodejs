@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <h1>반갑습니다.</h1>
+    <h3>우리나라는 <%- nation %></h3>
+    <h4><% const na = "대한민국" %><%- na %></h4>
+    <!-- js 코드 넣을 수 있으나 가급적사용하지 않는다. (연산을 view에서 하지않기) -->
+    <h4><%= html %></h4>
+    <!-- =을 사용하면 html 태그도 표현 -->
+    <h4><%- html %></h4>
+    <!-- -를 사용하면 html 태그가 표현x -->
+  </body>
+</html>

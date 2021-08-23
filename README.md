@@ -13,11 +13,33 @@
 
 ## 최초에 설치할 Package(plug in) 들
 
-- nodemon : nodejs 코드를 작성하고 저장하면 자동으로 재 실행하여 결과를 확인할 수 있도록 도와주는 plugin
-- express-generator : nodejs + express 프레임워크 서버 어플리케이션을 작성할 때 사용하는 plugin
-- create-react-app : React 기반의 프론트 프로젝트를 작성할 때 사용하는 plugin
-- yarn : React project를 만들어서 개발을 할때 npm을 대신하여 사용하는 package
+- cmd 창에서 관리자로 : npm install -g 패키지명
+
+* nodemon : nodejs 코드를 작성하고 저장하면 자동으로 재 실행하여 결과를 확인할 수 있도록 도와주는 plugin
+* express-generator : nodejs + express 프레임워크 서버 어플리케이션을 작성할 때 사용하는 plugin
+* create-react-app : React 기반의 프론트 프로젝트를 작성할 때 사용하는 plugin
+* yarn : React project를 만들어서 개발을 할때 npm을 대신하여 사용하는 package
 
 ## 맥에서는
 
+- npx를 사용하는 것이 관리하기 용이
 - npm install -g 에 nodemon, express-generator, create-react-app, yarn을 sudo로 하면된다
+
+## nodejs 프로젝트 생성하기
+
+1. 매우 고전적인 방법
+
+   > mkdir 프로젝트명
+   > cd 프로젝트명
+   > npm init -y
+
+2. express-generator를 이용한 백앤드 프로젝트 만드는 방법
+
+   > express 프로젝트명
+   > cd 프로젝트명
+   > npm install
+
+3. create-react-app을 이용한 프론트앤드 프로젝트 만드는 방법
+   > create-react-app 프로젝트
+   > cd 프로젝트
+   > yarn
