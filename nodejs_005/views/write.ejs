@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>글쓰기</title>
+    <link href="/css/form.css" rel="stylesheet" />
+    <link href="/css/main.css" rel="stylesheet" />
+  </head>
+  <body>
+    <section>
+      <form class="bbs_write" method="POST">
+        <div>
+          <label for="">작성자</label>
+          <input name="b_writer" id="b_writer" value="<%- BBS.b_writer %>" />
+          <!-- name 서버에 값을 보내는 용도
+                    id css, script에서 사용하는 용도-->
+        </div>
+        <div>
+          <label for="">작성일자</label>
+          <input name="b_date" id="b_date" value="<%- BBS.b_date %>" />
+        </div>
+        <div>
+          <label for="">작성시각</label>
+          <input name="b_time" id="b_time" value="<%- BBS.b_time %>" />
+        </div>
+        <div>
+          <label for="">제목</label>
+          <input name="b_subject" id="b_subject" value="<%- BBS.b_subject %>" />
+        </div>
+        <div>
+          <label for="">내용</label>
+          <input name="b_text" id="b_text" value="<%- BBS.b_text %>" />
+        </div>
+        <div class="btn_box">
+          <button>저장</button>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>

@@ -20,7 +20,7 @@
           <th>조회수</th>
         </tr>
         <% BBS.forEach((vo, index)=>{ %>
-        <tr>
+        <tr data-id="<%- vo.b_id %>">
           <td><%- index %></td>
           <td><%- vo.b_date %></td>
           <td><%- vo.b_time %></td>
@@ -38,4 +38,9 @@
       <address>CopyRight &copy; noso42@daum.net</address>
     </footer>
   </body>
+  <script>
+    document.querySelector("button,btn_write").addEventListener("click", () => {
+      document.location.href = "/bbs/write";
+    });
+  </script>
 </html>
