@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>나의 게시판</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/css/main.css" />
   </head>
   <body>
     <header>
@@ -24,11 +24,15 @@
           <td><%- index %></td>
           <td><%- vo.b_date %></td>
           <td><%- vo.b_time %></td>
+          <td><%- vo.b_writer %></td>
           <td><%- vo.b_subject %></td>
           <td><%- vo.b_count %></td>
         </tr>
         <% }) %>
       </table>
+      <div class="btn_box">
+        <button class="btn_write">글쓰기</button>
+      </div>
     </section>
     <footer>
       <address>CopyRight &copy; noso42@daum.net</address>
