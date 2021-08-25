@@ -21,14 +21,18 @@
       }
 
       section.bbs_detail span.title {
-        width: 30%;
-        background-color: #ddd;
+        width: 20%;
+        /* background-color: #ddd; */
         text-align: right;
+
+        display: inline-block;
+        vertical-align: top;
       }
 
       section.bbs_detail span.data {
         width: 60%;
-        background-color: #eee;
+        border: 1px solid #ddd;
+        /* background-color: #eee; */
       }
 
       section.reply input {
@@ -95,6 +99,7 @@
       <article class="reply">
         <div><%- vo.r_writer %></div>
         <div><%- vo.r_content %></div>
+        <div class="reply_delete" data-rid="<%- vo.id %>">X</div>
       </article>
       <% }) %>
 
@@ -131,6 +136,18 @@
         url += `bbs/delete?b_id=<%- BBS.b_id %>`;
       }
       document.location.href = url; // 홈으로 돌아가기
+    });
+    document.querySelector("section.reply").addEventListener("click", (e) => {
+      const click_tag = e.target;
+      if (
+        click_tag.tagName === "DIV" &&
+        click_tag.className.includes("reply_delete")
+      ) {
+        let rid = click_tag.dataset.rid;
+        if (confirm("댓글을 삭제합니다")) {
+          document.location.href = "/bbs/reply/delete/" + rid; // pathvariable
+        }
+      }
     });
   </script>
 </html>
