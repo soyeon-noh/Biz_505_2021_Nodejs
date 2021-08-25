@@ -4,7 +4,7 @@ const router = express.Router();
 // 가장 많이 사용되는 middleware
 const moment = require("moment");
 
-const { tbl_bbs } = require("../models/index"); // 점두개임
+const { tbl_bbs, tbl_reply } = require("../models/index"); // 점두개임
 
 // 설정된 /write get는
 // URL 에서 localhost:3000/bbs/write 로 요청할때 응답할 함수
@@ -39,10 +39,15 @@ router.get("/detail", (req, res) => {
   // tbl_bbs에서 b_id 칼럼값으로 데이터를 1개 SELECT하고
   // tbl_reply의 r_postId = b_id 로 WHERE 를 실행하여
   // tbl_replay를 SELECT하고 그 list를 함께 묶어서 결과로 달라
-  tbl_bbs.findOne({
-    where: { b_Id },
-    include: { model: tbl_reply },
-  });
+  tbl_bbs
+    .findOne({
+      where: { b_id },
+      include: { model: tbl_reply },
+    })
+    .then((result) => {
+      console.log(result);
+      res.render("detail", { BBS: result });
+    });
 });
 
 router.get("/delete", (req, res) => {
@@ -80,6 +85,12 @@ router.post("/update", (req, res) => {
   req.body.b_id = b_id;
   tbl_bbs.update(req.body, { where: { b_id } }).then((result) => {
     res.redirect("/");
+  });
+});
+
+router.post("/reply", (req, res) => {
+  tbl_reply.create(req.body).then((result) => {
+    res.redirect("/bbs/detail?b_id=" + req.body.r_postId);
   });
 });
 

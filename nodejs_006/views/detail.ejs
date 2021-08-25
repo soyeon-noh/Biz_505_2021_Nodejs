@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>detail</title>
     <link href="/css/main.css" rel="stylesheet" />
+    <link href="/css/form.css" rel="stylesheet" />
     <style>
       section.bbs_detail {
         width: 80%;
@@ -27,6 +28,10 @@
       section.bbs_detail span.data {
         width: 60%;
         background-color: #eee;
+      }
+
+      section.reply input {
+        width: 90%;
       }
     </style>
   </head>
@@ -58,6 +63,20 @@
         <button class="btn btn_update">수정</button>
         <button class="btn btn_delete">삭제</button>
       </div>
+    </section>
+    <section class="reply">
+      <form method="POST" action="/bbs/reply">
+        <input type="hidden" name="r_postId" value="<%- BBS.b_id %>"/>
+        <div>
+          <input
+            name="r_writer"
+            id="r_writer"
+            placeholder="작성자를 입력하세요"
+          />
+        </div>
+        <div><input name="r_content" id="r_content" placeholder="댓글을 입력하세요"></input></div>
+        <div class="btn_box"><button class="btn_reply">댓글저장</button></div>
+      </form>
     </section>
   </body>
   <script>
