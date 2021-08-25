@@ -8,7 +8,8 @@
     <link href="/css/main.css" rel="stylesheet" />
     <link href="/css/form.css" rel="stylesheet" />
     <style>
-      section.bbs_detail {
+      section.bbs_detail,
+      section.reply {
         width: 80%;
         margin: 10px auto;
       }
@@ -32,6 +33,31 @@
 
       section.reply input {
         width: 90%;
+      }
+
+      section.reply {
+        width: 80%;
+        margin: 5px auto;
+      }
+
+      article.reply {
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+      }
+
+      article.reply div {
+        padding: 5px;
+        margin: 5px;
+        background-color: #ccc;
+      }
+
+      article.reply div:nth-of-type(1) {
+        flex: 1;
+      }
+
+      article.reply div:nth-of-type(2) {
+        flex: 3;
       }
     </style>
   </head>
@@ -65,8 +91,15 @@
       </div>
     </section>
     <section class="reply">
+      <% BBS.tbl_replies.forEach((vo, index) =>{%>
+      <article class="reply">
+        <div><%- vo.r_writer %></div>
+        <div><%- vo.r_content %></div>
+      </article>
+      <% }) %>
+
       <form method="POST" action="/bbs/reply">
-        <input type="hidden" name="r_postId" value="<%- BBS.b_id %>"/>
+        <input type="hidden" name="r_postId" value="<%- BBS.b_id %>" />
         <div>
           <input
             name="r_writer"
@@ -74,7 +107,13 @@
             placeholder="작성자를 입력하세요"
           />
         </div>
-        <div><input name="r_content" id="r_content" placeholder="댓글을 입력하세요"></input></div>
+        <div>
+          <input
+            name="r_content"
+            id="r_content"
+            placeholder="댓글을 입력하세요"
+          />
+        </div>
         <div class="btn_box"><button class="btn_reply">댓글저장</button></div>
       </form>
     </section>
