@@ -28,10 +28,12 @@
       // 최신 jQueyr 시작점
       $(function () {
         $("#ga").on("click", function () {
+          // 표준함수로 사용해요 this 키워드를 사용할 수 있다.
           alert($(this).text());
         });
         $("#na").on("click", (e) => {
-          // 화살표함수를 쓰면 this가 dom전체가되어버림
+          // 화살표함수를 쓰면 this가 dom전체가되어버림.
+          // e.target을 사용해야한다.
           alert($(e.target).text);
         });
         $("#da").on("click", function () {
