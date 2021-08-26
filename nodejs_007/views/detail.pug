@@ -61,83 +61,70 @@ block content
 
 	section.bbs_detail
 		div
-			span class="title"작성자/span
-			span class="data"%- BBS.b_writer %/span
-			/div
+			span.title 작성자
+			span.data= BBS.b_writer
 		div
-			span class="title"작성일자/span
-			span class="data"%- BBS.b_date %/span
-			/div
+			span.title 작성일자
+			span.data= BBS.b_date
 		div
-			span class="title"작성시각/span
-			span class="data"%- BBS.b_time %/span
-			/div
+			span.title 작성시각
+			span.data= BBS.b_time
 		div
-			span class="title"제목/span
-			span class="data"%- BBS.b_subject %/span
-			/div
+			span.title 제목
+			span.data #{BBS.b_subject} 
 		div
-			span class="title"내용/span
-			span class="data"%- BBS.b_text %/span
-			/div
+			span.title 내용
+			span.data !{BBS.b_text} 
 
-		div class="btn_box"
-			button class="btn btn_home"홈으로/button
-			button class="btn btn_update"수정/button
-			button class="btn btn_delete"삭제/button
+
+		btn_box
+			button.btn.btn_home 홈으로
+			button.btn.btn_update 수정
+			button.btn.btn_delete 삭제
 			
-	
 
-	section class="reply"
-		% BBS.tbl_replies.forEach((vo, index) ={%
-		article class="reply"
-			div%- vo.r_writer %/div
-			div%- vo.r_content %/div
-			div class="reply_delete" data-rid="%- vo.id %"X/div
-			/article
-		% }) %
+	section.reply
+		each vo,index in BBS.tbl_replies
+			article.reply
+				div= vo.r_writer
+				div= vo.r_content
+				div.reply_delete(data-rid= vo.id) X
 
-		form method="POST" action="/bbs/reply"
-			input type="hidden" name="r_postId" value="%- BBS.b_id %" /
+		form(method="POST", action="/bbs/reply")
+			input(type= "hidden", name= "r_postId", value= BBS.b_id)
 			div
-				input
-				name="r_writer"
-				id="r_writer"
-				placeholder="작성자를 입력하세요"
-			
+				input#r_writer(name="r_writer", placeholder="작성자를 입력하세요")
 			div
-				input
-				name="r_content"
-				id="r_content"
-				placeholder="댓글을 입력하세요"
-			div class="btn_box"button class="btn_reply"댓글저장/button/div
+				input(id="r_content" name="r_content", placeholder="댓글을 입력하세요")
+			div.btn_box
+				button.btn_reply 댓글저장
 
 
 
-	script
-	document.querySelector("div.btn_box").addEventListener("click", (e) = {
-	const btn = e.target;
-	const className = btn.className;
-	let url = "/";
+		script.
+			document.querySelector("div.btn_box").addEventListener("click", (e) = {
+				const btn = e.target;
+				const className = btn.className;
+				let url = "/";
 
-	// 클래스는 여러개 설정 가능하기때문에 === 이 아닌 includes를 사용한다
-	if (className.includes("btn_update")) {
-	url += `bbs/update?b_id=%- BBS.b_id %`;
-	} else if (className.includes("btn_delete")) {
-	url += `bbs/delete?b_id=%- BBS.b_id %`;
-	}
-	document.location.href = url; // 홈으로 돌아가기
-	});
-	document.querySelector("section.reply").addEventListener("click", (e) = {
-	const click_tag = e.target;
-	if (
-	click_tag.tagName === "DIV" &&
-	click_tag.className.includes("reply_delete")
-	) {
-	let rid = click_tag.dataset.rid;
-	if (confirm("댓글을 삭제합니다")) {
-	document.location.href = "/bbs/reply/delete/" + rid; // pathvariable
-	}
-	}
-	});
+
+				if (className.includes("btn_update")) {
+					url += `bbs/update?b_id=%- BBS.b_id %`;
+				} else if (className.includes("btn_delete")) {
+					url += `bbs/delete?b_id=%- BBS.b_id %`;
+				}
+				document.location.href = url; 
+			});
+			document.querySelector("section.reply").addEventListener("click", (e) = {
+				const click_tag = e.target;
+				if (
+					click_tag.tagName === "DIV" &&
+					click_tag.className.includes("reply_delete")
+				) {
+					let rid = click_tag.dataset.rid;
+					if (confirm("댓글을 삭제합니다")) {
+						document.location.href = "/bbs/reply/delete/" + rid;
+				}
+				}
+			});
 
