@@ -30,12 +30,7 @@ block content
 				document.location.href=`/bbs/detail?b_id=${b_id}`
 			}
 		})
-		document.querySelector("table.bbs_list")
+		document.querySelector("button.btn_write")
 		.addEventListener("click", (e)=> {
-			const td = e.target 
-			if(td.tagName === "TD"){
-				const tr = td.parentNode 
-				const b_id = tr.dataset.id 
-				document.location.href=`/bbs/detail?b_id=${b_id}`
-			}
-		})		
+				document.location.href=`/bbs/write`
+		})
