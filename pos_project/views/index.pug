@@ -3,21 +3,14 @@ extends layout
 block content
 
 	style.
-		table.table {
-			width: 750px;
-			height: 560px;
-			margin: 0 auto;
-			border-spacing: 10px;
-			
-		}
-		
-		table.table td {
+		section.main div {
 			width: 180px;
 			height: 180px;
 			background-color : #27B9F2;
 			color : white;
 			font-size : 30px;
 			padding: 20px;
+			margin: 5px;
 		}
 
 		li.table {
@@ -32,33 +25,31 @@ block content
 		ul 
 			li.table 테이블
 			li.order 결제
-	section#main 
-		table.table 
-			tr
-				td 01 번
-					p 사용 가능
-					p 
-				td 02 번
-					p 사용 가능
-				td 03 번
-					p 사용 가능				
-				td 04 번
-					p 사용 가능
-			tr
-				td 05 번
-					p 사용 가능
-				td 06 번
-					p 사용 가능
-				td 07 번
-					p 사용 가능				
-				td 08 번
-					p 사용 가능 
-			tr
-				td 09 번
-					p 사용 가능
-				td 10 번
-					p 사용 가능
-				td 11 번
-					p 사용 가능 
-				td 12 번
-					p 사용 가능 							
+	section.main 		
+		- for (let i= 0; i < 12; i++) 
+			- if(i+1 < 10)
+				div(data-id= i+1)= "0" + (i+1) + "번"
+					p(data-id= i+1) 사용 가능
+			- else
+				div(data-id= i+1)= i+1 + "번"
+					p(data-id= i+1) 사용 가능				
+			
+	script.
+		document.querySelector("section.main")
+		.addEventListener("click", (e)=>{
+			const div = e.target 
+			if(div.tagName === "DIV" || "P"){
+				id = div.dataset.id;
+				document.location.href=`/order?table=${id}`
+			}
+		})
+
+	//- script.
+	//- 	document.querySelector("table.table")
+	//- 	.addEventListener("click", (e)=>{
+	//- 		const td = e.target 
+	//- 		if(td.tagName === "TD"){
+	//- 			id = td.dataset.id;
+	//- 			document.location.href=`/table/${id}`
+	//- 		} 
+	//- 	})		

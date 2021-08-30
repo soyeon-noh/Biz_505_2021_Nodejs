@@ -3,23 +3,6 @@ extends layout
 block content
 
 	style.
-		table.table {
-			width: 750px;
-			height: 560px;
-			margin: 0 auto;
-			border-spacing: 10px;
-			
-		}
-		
-		table.table td {
-			width: 180px;
-			height: 180px;
-			background-color : #27B9F2;
-			color : white;
-			font-size : 30px;
-			padding: 20px;
-		}
-
 		li.table {
 			background-color: #b8bfbe;
 		}
@@ -28,80 +11,53 @@ block content
 			color: white;
 		}
 
+		table.order {
+			background-color: grey;
+			width: 50%;
+			text-align: center;
+		}
+
+		table.order tr {
+			border-bottom: 1px solid #181D26;
+		}
+
+		table.order td {
+			height: 40px;
+			padding: 8px 10px;
+			width: 50px;
+		}
+
+		table.order td:nth-of-type(1){
+			width: 40%;
+		}
+
+		
+
 	nav.main
 		ul 
 			li.table 테이블
 			li.order 결제
 
-	section#order
+	section.main
 		table.order 
 			tr
 				td 상품명
 				td 단가
 				td 수량
 				td 금액
+			-for (let i=0; i<6; i++)
+				tr
+					td 
+					td 
+					td 
+					td 
 			tr
+				td 총
 				td 
-				td 
-				td 
-				td 
-			tr
-				td 
-				td 
-				td 
-				td 
-			tr
-				td 
-				td 
-				td 
-				td 
-			tr
-				td 
-				td 
-				td 
-				td 
-			tr
-				td 
-				td 
-				td 
-				td 
-			tr
-				td 
-				td 
-				td 
-				td 
-			tr
-				td 
-				td 
-				td 
-				td 
-			tr
-				td 
-				td 
-				td 
-				td 
-			tr
-				td 
-				td 
-				td 
-				td 
-			tr
-				td 
-				td 
-				td 
-				td 
-			tr
-				td 
-				td 
-				td 
-				td 
-			tr
-				td 
-				td 
-				td 
-				td 
-			tr
-				td 
-				td 
-				td 
-				td 
+				td 3 개
+				td 10000 원
+
+		div 
+			div 
+		
+			

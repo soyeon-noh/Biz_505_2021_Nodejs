@@ -34,6 +34,18 @@ nav.main li {
   text-align: center;
 }
 
+section.main {
+  display: flex;
+  flex-wrap: wrap;
+
+  width: 760px;
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+}
+
 footer {
   padding: 15px;
   background-color: #b8bfbe;

@@ -27,9 +27,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  //FK 설정
   order.associate = (models) => {
-    order.hasMany(models.tbl_product, { foreignKey: "o_pcode" });
+    order.belongsTo(models.tbl_product);
   };
+
   return order; // return을 빼먹지말기
 };
