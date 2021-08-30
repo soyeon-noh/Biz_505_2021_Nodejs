@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: #f2f2f2;
+}
+
+header.main {
+  padding: 15px;
+  background-color: #181d26;
+  color: white;
+  text-align: center;
+}
+
+nav.main {
+  padding-bottom: 10px;
+}
+
+nav.main ul {
+  display: flex;
+  justify-content: space-around;
+}
+
+nav.main li {
+  list-style: none;
+
+  padding: 12px;
+  width: 100%;
+  text-align: center;
+}
+
+footer {
+  padding: 15px;
+  background-color: #b8bfbe;
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+
+  text-align: center;
+}
