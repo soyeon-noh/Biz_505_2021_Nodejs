@@ -18,9 +18,13 @@ const order_input = (table_id, menu_id) => {
 // DOMContentedLoaded event 를 설정하면
 // JS 코드가 HTML의 어떤 부분에 있어도 상관 없이 작동된다.
 document.addEventListener("DOMContentLoaded", () => {
+  // 현재 화면이 열리면(주문화면)
+  // table id값을 추출하기 위하여
+  // article.order_list에서 dataset을 추출하여 변수에 담는다.
   const order_article = document.querySelector("article.order_list");
   const table_id = order_article.dataset.table_id;
 
+  // article.product_list 의 div.menu가 클릭되면 할일 지정
   const product_article = document.querySelector("article.product_list");
 
   if (product_article) {
