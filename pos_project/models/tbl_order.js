@@ -27,9 +27,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  order.associate = (models) => {
-    order.belongsTo(models.tbl_product);
-  };
+  // order.associate = (models) => {
+  //   order.belongsTo(models.tbl_product);
+  // };
 
   return order; // return을 빼먹지말기
 };

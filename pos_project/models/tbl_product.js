@@ -22,10 +22,10 @@ module.exports = (sequelize, DataTypes) => {
     { timestamps: false } // createdAt, updatedAt 만들지 않기
   );
 
-  //FK 설정
-  product.associate = (models) => {
-    product.hasMany(models.tbl_order, { foreignKey: "o_pcode" });
-  };
+  // //FK 설정
+  // product.associate = (models) => {
+  //   product.hasMany(models.tbl_order, { foreignKey: "o_pcode" });
+  // };
 
   return product; // return을 빼먹지말기
 };
