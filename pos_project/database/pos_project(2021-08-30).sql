@@ -12,8 +12,8 @@ USE posdb;
 DESC tbl_orders;
 DESC tbl_products;
 
-DROP TABLE tbl_orders;
-DROP TABLE tbl_products;
+-- DROP TABLE tbl_orders;
+-- DROP TABLE tbl_products;
 
 SELECT * FROM tbl_orders;
 SELECT * FROM tbl_products;

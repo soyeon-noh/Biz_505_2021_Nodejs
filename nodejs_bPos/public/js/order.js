@@ -1,3 +1,56 @@
+// fetch를 통해서 되돌려 받은 주문리스트를
+// 왼쪽의 주문리스트에 표시하기
+const add_order_list = (menu_list) => {
+  const order_box = document.querySelector("article.order_list"); // order_view.pug
+
+  // 리스트가 중복되어 표시되는 것을 방지하기 위하여
+  // 기존에 div.order_list가 있는지 확인하고
+  // div.order_list를 가져와서,
+  // 전체를 article.order_list로부터 삭제하기
+  let order_list = document.querySelectorAll("div.order_list"); // All 사용
+  if (order_list) {
+    // order_list가 있으면
+    order_list.forEach((order_tag) => {
+      // list에 있는 요소를 tag에 하나씩담아서
+      order_box.removeChild(order_tag); // 담은 것들을 하나하나 지운다
+    });
+  }
+
+  const orders = menu_list.map((menu, index) => {
+    order_list = document.createElement("div");
+    order_list.classList.add("order_list");
+
+    // div.menu_id tag를 만들어라
+    const menu_id = document.createElement("div");
+    menu_id.classList.add("menu_id");
+    menu_id.innerText = menu.to_pcode;
+
+    // div.menu_name tag를 만들어라
+    const menu_name = document.createElement("div");
+    menu_name.classList.add("menu_name");
+    // menu_name.innerText = menu.p_name;
+
+    const menu_qty = document.createElement("div");
+    menu_qty.classList.add("menu_qty");
+    menu_qty.innerText = menu.to_qty;
+
+    const menu_price = document.createElement("div");
+    menu_price.classList.add("menu_price");
+    menu_price.innerText = menu.to_price;
+
+    order_list.appendChild(menu_id);
+    order_list.appendChild(menu_name);
+    order_list.appendChild(menu_qty);
+    order_list.appendChild(menu_price);
+
+    return order_list;
+
+    // order_box.appendChild(order_list);
+  });
+
+  order_box.append(...orders);
+};
+
 // fetch를 사용하여 서버에 데이터를 요청하기 위해
 // 별도의 함수를 선언하기
 const order_input = (table_id, menu_id) => {
@@ -12,7 +65,10 @@ const order_input = (table_id, menu_id) => {
    */
   fetch(`/pos/order/${table_id}/input/${menu_id}`) // ex) 3번테이블에 5번메뉴를 input
     .then((res) => res.json())
-    .then((result) => console.log(result));
+    .then((result) => {
+      console.log(result);
+      add_order_list(result.order_list);
+    });
 };
 
 // DOMContentedLoaded event 를 설정하면
@@ -41,4 +97,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // 주문서 화면이 열릴때
+  // table에 주문내용이 있으면 서버로부터 가져와서 보여라
+  fetch(`/pos/getorder/${table_id}`)
+    .then((res) => res.json())
+    .then((result) => add_order_list(result));
 });
