@@ -41,3 +41,5 @@ VALUES
 ('P0010', '쫄면', 6000);
 
 SELECT * FROM tbl_products;
+
+-- DROP TABLE tbl_table_orders
