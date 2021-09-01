@@ -1,7 +1,7 @@
 extends layout
 
 block content
-
+	script(src="/js/order.js")
 	style.
 		li.table {
 			background-color: #b8bfbe;
@@ -39,6 +39,7 @@ block content
 			li.order 결제
 
 	section.main
+		h1 !{table_id} 번 테이블
 		table.order 
 			tr
 				td 상품명
@@ -57,9 +58,11 @@ block content
 				td 3 개
 				td 10000 원
 
-		div.menu
+		article.menu_list
 			each vo in MENU 
-				div.menu(data-code= vo.p_code) #{vo.p_name}
-			
+				div.menu(data-p_code= vo.p_code) #{vo.p_name}
+
+
+		
 		
 			

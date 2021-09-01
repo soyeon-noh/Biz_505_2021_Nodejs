@@ -28,28 +28,21 @@ block content
 	section.main 		
 		- for (let i= 0; i < 12; i++) 
 			- if(i+1 < 10)
-				div(data-id= i+1)= "0" + (i+1) + "번"
-					p(data-id= i+1) 사용 가능
+				div.table(data-id= i+1)= "0" + (i+1) + "번"
+					p.table(data-id= i+1) 사용 가능
 			- else
-				div(data-id= i+1)= i+1 + "번"
-					p(data-id= i+1) 사용 가능				
+				div.table(data-id= i+1)= i+1 + "번"
+					p.table(data-id= i+1) 사용 가능				
 			
 	script.
 		document.querySelector("section.main")
 		.addEventListener("click", (e)=>{
-			const div = e.target 
-			if(div.tagName === "DIV" || "P"){
-				id = div.dataset.id;
-				document.location.href=`/order?table=${id}`
+			const target = e.target 
+			if(target.tagName === "DIV" || "P" 
+				&& target.className.includes("table")){
+				table_id = target.dataset.id;
+				document.location.href=`/order/table/${table_id}`
 			}
 		})
 
-	//- script.
-	//- 	document.querySelector("table.table")
-	//- 	.addEventListener("click", (e)=>{
-	//- 		const td = e.target 
-	//- 		if(td.tagName === "TD"){
-	//- 			id = td.dataset.id;
-	//- 			document.location.href=`/table/${id}`
-	//- 		} 
-	//- 	})		
+	

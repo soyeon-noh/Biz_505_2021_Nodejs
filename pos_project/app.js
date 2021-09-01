@@ -8,9 +8,9 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 const orderRouter = require("./routes/orderRouter");
 
-const sequelize = require("./models/index").sequelize;
 // tbl_bbs.js 등에 설정된 정보를 기준으로 table이 없으면 table을 자동으로 생성해준다.
-sequelize.sync();
+// const sequelize = require("./models/index").sequelize;
+// sequelize.sync();
 
 var app = express();
 
