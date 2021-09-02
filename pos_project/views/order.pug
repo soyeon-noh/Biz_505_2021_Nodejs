@@ -3,6 +3,7 @@ extends layout
 block content
 	script(src="/js/order.js")
 	style.
+
 		li.table {
 			background-color: #b8bfbe;
 		}
@@ -11,24 +12,60 @@ block content
 			color: white;
 		}
 
-		table.order {
-			background-color: grey;
-			width: 50%;
+		article.order_list,
+		article.menu_list {
+			border: 1px solid red;
+			flex: 1;
+			margin: 5px;
+
+			background-color: white;
+		}
+		
+		article.order_list h1 {
+			padding: 10px;
+			text-align: center;
+			background-color: #ddd;
+		}
+
+		table.order_list,
+		table.order_list_total {
+			width: 100%;
 			text-align: center;
 		}
 
-		table.order tr {
+		table.order_list {
+			background-color: #aaa;
+		}
+
+		table.order_list tr {
 			border-bottom: 1px solid #181D26;
 		}
 
-		table.order td {
+		table.order_list td,
+		table.order_list_total td{
 			height: 40px;
 			padding: 8px 10px;
 			width: 50px;
 		}
 
-		table.order td:nth-of-type(1){
-			width: 40%;
+		table.order_list td:nth-of-type(1),
+		table.order_list_total td:nth-of-type(1){
+			width: 30%;
+		}
+
+		
+		article.menu_list {
+		
+			/* display: flex; */
+		}
+
+		div.menu {
+			border: 1px solid green;
+
+			width: 120px;
+			padding: 1rem;
+
+			text-align: center;
 		}
 
 		
@@ -39,28 +76,33 @@ block content
 			li.order 결제
 
 	section.main
-		h1 !{table_id} 번 테이블
-		table.order 
-			tr
-				td 상품명
-				td 단가
-				td 수량
-				td 금액
-			-for (let i=0; i<6; i++)
+		article.order_list
+			h1 !{table_id} 번 테이블
+			table.order_list
+				thead
+					tr
+						td 상품명
+						td 단가
+						td 수량
+						td 금액
+						td 삭제
+				tbody
+			table.order_list_total
 				tr
+					td 총량
 					td 
+					td 3 개
+					td 10000 원
 					td 
-					td 
-					td 
-			tr
-				td 총
-				td 
-				td 3 개
-				td 10000 원
+			
+			.pay_box 
+				button.btn_table_layout 
 
 		article.menu_list
-			each vo in MENU 
-				div.menu(data-p_code= vo.p_code) #{vo.p_name}
+			each vo in MENU
+				div.menu 
+					div.menu_name(data-p_code= vo.p_code) #{vo.p_name}
+					div.menu_price #{vo.p_price} 원
 
 
 		
