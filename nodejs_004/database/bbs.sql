@@ -42,4 +42,11 @@ VALUES
 
 SELECT * FROM tbl_products;
 
--- DROP TABLE tbl_table_orders
+DROP TABLE tbl_table_orders;
+
+-- 2021-09-01 posV2
+ USE nodedb;
+ DROP TABLE tbl_table_orders;
+ DROP TABLE tbl_products;
+ 
+ SELECT * FROM tbl_table_orders;
