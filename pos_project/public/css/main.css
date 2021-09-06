@@ -36,7 +36,6 @@ nav.main li {
 
 section.main {
   display: flex;
-  flex-wrap: wrap;
 
   width: 800px;
   margin: 0 auto;
