@@ -14,9 +14,27 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 
+import mongoose from "mongoose";
+
+// const mongoose = require("mongoose");
+// const mongoLocalURL = "mongodb://localhost:27017";
+// db이름을 뒤에 붙여준다
+const mongoLocalURL = "mongodb://localhost:27017/users";
+
+// 모니터링
+const dbConn = mongoose.connection;
+dbConn.once("open", () => {
+  console.log("MongoDB 연결완료");
+});
+dbConn.on("error", () => {
+  console.err;
+});
+
+mongoose.connect(mongoLocalURL);
+
 import session from "express-session";
 import passport from "passport";
-import passportConfig from "./modules/Passport.js";
+import passportConfig from "./modules/PassportConfig.js";
 
 import indexRouter from "./routes/index.js";
 import usersRouter from "./routes/users.js";
@@ -30,7 +48,9 @@ const corsOption = {
     const isWhiteURL = whiteURL.indexOf(origin) !== -1;
     callback(null, isWhiteURL);
   },
+  credentials: true,
 };
+app.use(cors(corsOption));
 
 // Disable the fingerprinting of this web technology. 경고
 app.disable("x-powered-by");
@@ -45,13 +65,36 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join("./public")));
 
+// 밀리세컨드
+// 밀리초 * 60초 * 60분 * 24시간
+// 1초 60 초 60분 24시간
+const oneDay = 1000 * 60 * 60 * 24;
+
 // 세션 활성화
-app.use(session({ secret: "aa1234", resave: true, saveUninitialized: false }));
+app.use(
+  session({
+    secret: "aa1234", // 아무거나써도된대
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      secure: false,
+      httpOnly: false,
+      maxAge: oneDay, // 하루동안 유지
+    },
+  })
+);
 app.use(passport.initialize()); // passprot start
 app.use(passport.session()); // passport와 session을 연결
 
-app.use(cors(corsOption));
 passportConfig(); // 항상 제일 마지막에 와야한다 (순서중요)
+
+// response를 할 때
+// sesstion에 담긴값을 클라이언트로 전송하기 위한 옵션설정하기
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  next();
+});
+
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 

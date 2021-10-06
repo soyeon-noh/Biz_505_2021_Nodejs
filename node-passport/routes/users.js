@@ -1,5 +1,6 @@
 import passport from "passport";
 import express from "express";
+import Users from "../models/User.js";
 const router = express.Router();
 
 /* GET users listing. */
@@ -52,15 +53,22 @@ router.post("/join", (req, res) => {
   console.log("password : ", password);
   console.log("email : ", email);
 
-  res.json("잘 받았다");
+  const userVO = new Users(req.body);
+  userVO.save((err, data) => {
+    res.json(data);
+  });
 
-  //   console.log("req.body", req.body);
-
-  //   const response = res.json({
-  //     userid: req.userid,
-  //     password: req.password,
-  //     email: req.email,
+  /**  save 사용  */
+  //   users(req.body).save((err) => {
+  //     if (err) {
+  //       console.log(err);
+  //     }
+  //     res.json("잘 받았다");
   //   });
+
+  /**  create 사용  */
+  //   users.create(req.body);
+  //   res.json("잘 받았다")
 });
 
 export default router;
