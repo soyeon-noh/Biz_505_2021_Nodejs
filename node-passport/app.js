@@ -89,7 +89,7 @@ app.use(passport.session()); // passport와 session을 연결
 passportConfig(); // 항상 제일 마지막에 와야한다 (순서중요)
 
 // response를 할 때
-// sesstion에 담긴값을 클라이언트로 전송하기 위한 옵션설정하기
+// session에 담긴값을 클라이언트로 전송하기 위한 옵션설정하기
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   next();
