@@ -14,6 +14,10 @@ router.post("/", (req, res) => {
   // req.user 속성값이 존재한다
   // 로그인이 안되거나 session이 유효하지 않으면
   // req.user 속성값이 없다.
+
+  // session 정보가 존재하면
+  //	현재 res.user 정보를 클라이언트에서 전송하고
+  // 없으면 빈 배열 [] 을 전송하여 session이 없음을 통보한다.
   if (req.user) {
     console.log("session OK");
     res.json(req.user);
@@ -83,6 +87,21 @@ router.post("/join", (req, res) => {
   /**  create 사용  */
   //   users.create(req.body);
   //   res.json("잘 받았다")
+});
+
+/**
+ * passport로 로그인된 경우 req.logout() 함수가 생성되며
+ * 해당 함수를 호출하면 passport logout이 수행된다
+ */
+router.post("/logout", async (req, res) => {
+  await req.logout();
+
+  // 저장된 session을 삭제해준다.
+  await req.session.destroy((err) => {
+    res.send({
+      message: "logout OK!!",
+    });
+  });
 });
 
 export default router;
