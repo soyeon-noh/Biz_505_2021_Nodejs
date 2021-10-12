@@ -7,7 +7,7 @@ const admin = {
 
 const user = {
   userid: "user",
-  passwrod: "12345",
+  password: "12345",
   role: "user",
   email: "user@google.com",
 };
