@@ -50,3 +50,10 @@ DROP TABLE tbl_table_orders;
  DROP TABLE tbl_products;
  
  SELECT * FROM tbl_table_orders;
+ 
+ -- 2021-09-02
+ 
+ SELECT to_table_id, count(to_table_id)
+ FROM tbl_table_orders
+ WHERE to_pay IS NULL
+ GROUP BY to_table_id;
